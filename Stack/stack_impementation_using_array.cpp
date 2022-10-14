@@ -72,7 +72,6 @@ int main()
     s.pop();    
     s.pop();    
     s.pop();
-    s.push(7);
     cout<<s.peek()<<endl;    
     s.pop();
     if(s.empty())
