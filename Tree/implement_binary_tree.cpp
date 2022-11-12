@@ -108,6 +108,16 @@ class Tree
             }
         }
     }
+    void inorderTraversal(node* root)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        inorderTraversal(root->left);
+        cout<<root->data<<" ";
+        inorderTraversal(root->right);
+    }
 };
 int main()
 {
@@ -117,5 +127,16 @@ int main()
     t.levelOrderTraversal();
     cout<<"Reverse Order Traversal is : "<<endl;
     t.reverseLevelOrderTraversal();
+    cout<<endl;
+    cout<<endl;
+    cout<<"INORDER TRAVERSAL : ";
+    t.inorderTraversal(t.root);
+    // cout<<endl;
+    // cout<<"PREORDER TRAVERSAL : ";
+    // t.preorderTraversal(t.root);
+    // cout<<endl;
+    // cout<<"POSTORDER TRAVERSAL : ";
+    // t.postorderTraversal(t.root);
+    // cout<<endl;
     return 0;
 }
