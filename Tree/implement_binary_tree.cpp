@@ -128,6 +128,16 @@ class Tree
         preorderTraversal(root->left);
         preorderTraversal(root->right);
     }
+    void postorderTraversal(node* root)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        postorderTraversal(root->left);
+        postorderTraversal(root->right);
+        cout<<root->data<<" ";
+    }
 };
 int main()
 {
@@ -144,9 +154,9 @@ int main()
     cout<<endl;
     cout<<"PREORDER TRAVERSAL : ";
     t.preorderTraversal(t.root);
-    // cout<<endl;
-    // cout<<"POSTORDER TRAVERSAL : ";
-    // t.postorderTraversal(t.root);
-    // cout<<endl;
+    cout<<endl;
+    cout<<"POSTORDER TRAVERSAL : ";
+    t.postorderTraversal(t.root);
+    cout<<endl;
     return 0;
 }
