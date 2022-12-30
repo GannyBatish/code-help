@@ -82,6 +82,16 @@ void inorder(Node* root)
     cout<<root->data<<" ";
     inorder(root->right);
 }
+void preOrder(Node* root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    cout<<root->data<<" ";
+    preOrder(root->left);
+    preOrder(root->right);
+}
 void morrisTraversal(Node* root)
 {
     if(root==NULL)
@@ -105,13 +115,14 @@ void morrisTraversal(Node* root)
             }
             if(pre->right==NULL)
             {
+                // cout<<curr->data<<" "; //for pre Order Traversal
                 pre->right=curr;
                 curr=curr->left;
             }
             else
             {
                 pre->right=NULL;
-                cout<<curr->data<<" ";
+                cout<<curr->data<<" ";   //for inorder Traversal
                 curr=curr->right;
             }
         }
