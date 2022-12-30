@@ -12,3 +12,21 @@ Node * inOrderSuccessor(Node *root, Node *x)
         }
         return ans;
     }
+
+
+
+    Node * inOrderPredessor(Node* root,Node* x)
+    {
+        Node* ans=NULL;
+        while(root!=NULL)
+        {
+            if (temp2->key < key) {
+                pre = temp2;
+                temp2 = temp2->right;
+            } 
+            else
+            {
+                temp2 = temp2->left;
+            }
+        }
+    }
