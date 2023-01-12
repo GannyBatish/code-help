@@ -165,8 +165,13 @@ TreeNode<int> *mergeBST(TreeNode<int> *root1, TreeNode<int> *root2)
     // Write your code here.
     TreeNode<int>* head1=NULL;
     TreeNode<int>* head2=NULL;
+
     convertBSTtoDLL(root1,head1);
+    head1->left=NULL;
+    
     convertBSTtoDLL(root2,head2);
+    head2->left=NULL;
+    
     TreeNode<int>* head=mergeTwoDLL(head1,head2);
     return convertDLLtoBST(head,countNodes(head));
 }
