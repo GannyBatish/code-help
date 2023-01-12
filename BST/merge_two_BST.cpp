@@ -61,3 +61,112 @@ TreeNode<int> *mergeBST(TreeNode<int> *root1, TreeNode<int> *root2)
     vector<int> ans=merge(inorder1,inorder2);
     return buildBSTbyInorder(ans,0,ans.size()-1);
 }
+
+
+
+
+//Approach 2
+// T(n)- O(n+m);
+// S(n)- O(h1+h2)
+void convertBSTtoDLL(TreeNode<int> *root,TreeNode<int>* &head)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    convertBSTtoDLL(root->right,head);
+    
+    root->right=head;
+    if(head!=NULL)
+    {
+        head->left=root;
+    }
+    head=root;
+    
+    convertBSTtoDLL(root->left,head);
+}
+TreeNode<int>* mergeTwoDLL(TreeNode<int>* head1,TreeNode<int>* head2)
+{
+    TreeNode<int>* head=NULL;
+    TreeNode<int>* tail=NULL;
+    while(head1!=NULL && head2!=NULL)
+    {
+        if(head1->data<head2->data)
+        {
+            if(head==NULL && tail==NULL)
+            {
+                head=head1;
+                tail=head1;
+                head1=head1->right;
+            }
+            else{
+                tail->right=head1;
+                head1->left=tail;
+                tail=head1;
+                head1=head1->right;
+            }
+        }
+        else{
+            if(head==NULL && tail==NULL)
+            {
+                head=head2;
+                tail=head2;
+                head2=head2->right;
+            }
+            else{
+                tail->right=head2;
+                head2->left=tail;
+                tail=head2;
+                head2=head2->right;
+            }
+        }
+    }
+    while(head1!=NULL)
+    {
+        tail->right=head1;
+        head1->left=tail;
+        tail=head1;
+        head1=head1->right;
+    }
+    while(head2!=NULL)
+    {
+        tail->right=head2;
+        head2->left=tail;
+        tail=head2;
+        head2=head2->right;
+    }
+    return head;
+}
+int countNodes(TreeNode<int>* head)
+{
+    int count=0;
+    while(head!=NULL)
+    {
+        count++;
+        head=head->right;
+    }
+    return count;
+}
+TreeNode<int>* convertDLLtoBST(TreeNode<int>* &head,int n)
+{
+    if(n<=0 || head==NULL)
+    {
+        return NULL;
+    }
+    TreeNode<int>* left=convertDLLtoBST(head,n/2);
+    TreeNode<int>* root=head;
+    root->left=left;
+    head=head->right;
+    root->right=convertDLLtoBST(head,n-n/2-1);
+    return root;
+}
+TreeNode<int> *mergeBST(TreeNode<int> *root1, TreeNode<int> *root2)
+{
+    // Write your code here.
+    TreeNode<int>* head1=NULL;
+    TreeNode<int>* head2=NULL;
+    convertBSTtoDLL(root1,head1);
+    convertBSTtoDLL(root2,head2);
+    TreeNode<int>* head=mergeTwoDLL(head1,head2);
+    return convertDLLtoBST(head,countNodes(head));
+}
