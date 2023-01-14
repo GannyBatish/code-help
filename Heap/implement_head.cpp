@@ -32,6 +32,36 @@ class heap{
             }
         }
     }
+    void heapify(int i)
+    {
+        int largest=i;
+        int leftIndex=2*i;
+        int rightIndex=2*i+1;
+        if(leftIndex<=size && arr[i]<arr[leftIndex])
+        {
+            largest=leftIndex;
+        }
+        if(rightIndex<=size && arr[i]<arr[rightIndex])
+        {
+            largest=rightIndex;
+        }
+
+        if(largest!=i)
+        {
+            swap(arr[i],arr[largest]);
+            heapify(largest);
+        }
+    }
+    void deleteFromHeap()
+    {
+        if(size==-1)
+        {
+            cout<<"Nothing to delete"<<endl;
+        }
+        arr[1]=arr[size];
+        size--;
+        heapify(1);
+    }
     void printArr()
     {
         for(int i=1;i<=size;i++)
@@ -74,17 +104,18 @@ class heap{
 int main()
 {
     heap h;
-    h.insert(60);
-    h.insert(55);
-    h.insert(33);
-    h.insert(75);
-    h.insert(90);
-    h.insert(30);
-    h.insert(65);
-    h.insert(40);
-    h.insert(15);
-    h.insert(100);
-    h.printArr();
+    while(true)
+    {
+        int temp;
+        cin>>temp;
+        if(temp==-1)
+        {
+            break;
+        }
+        h.insert(temp);
+    }
+    h.lvlOrderTraversal();
+    h.deleteFromHeap();
     h.lvlOrderTraversal();
     return 0;
 }
