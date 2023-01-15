@@ -37,7 +37,7 @@ class heap{
         int largest=i;
         int leftIndex=2*i;
         int rightIndex=2*i+1;
-        if(leftIndex<=size && arr[i]<arr[leftIndex])
+        if(leftIndex<=size && arr[largest]<arr[leftIndex])
         {
             largest=leftIndex;
         }
