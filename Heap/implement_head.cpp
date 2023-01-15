@@ -41,7 +41,7 @@ class heap{
         {
             largest=leftIndex;
         }
-        if(rightIndex<=size && arr[i]<arr[rightIndex])
+        if(rightIndex<=size && arr[largest]<arr[rightIndex])
         {
             largest=rightIndex;
         }
