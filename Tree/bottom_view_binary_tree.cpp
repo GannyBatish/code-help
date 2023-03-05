@@ -13,7 +13,7 @@ vector <int> bottomView(Node *root) {
             pair<Node*,int> temp=q.front();
             q.pop();
             Node* frontNode=temp.first;
-            int hd=temp.second;
+            int hd=temp.second;                 
             nodes[hd]=frontNode->data;
             if(frontNode->left)
             {
